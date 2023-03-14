@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Input/Output Example</title>
+  <style>
+    #input-pane {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #eee;
+    }
+
+    #output-pane {
+    position: absolute; /* Add this line */
+    top: 0; /* Add this line */
+    bottom: 30px; /* Adjust this to leave space for the input pane */
+    left: 0;
+    right: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="input-pane">
+    <textarea id="input-text" placeholder="Enter text here..." onkeydown="handleKeyDown(event)"></textarea>
+  </div>
+  <div id="output-pane"></div>
+  <script src="bower_components/showdown/dist/showdown.min.js"></script>
+
+  <script>
+    let messages = []
+    let message_text = ""
+    
+    function handleKeyDown(event) {
+      if (event.keyCode === 13 && !event.shiftKey) {
+        event.preventDefault();
+        const inputText = document.getElementById('input-text').value.trim();
+        if (inputText.length > 0) {
+          updateOutput('You: ' + inputText);
+          document.getElementById('input-text').value = '';
+          scrollToBottom();
+          messages.push({"role": "user", "content": inputText})
+
+          // Call ChatGPT API with inputText
+          const data = {
+            "model": "gpt-3.5-turbo",
+            "messages": messages
+          };
+          fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer [Insert key here]',
+              },
+              body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+              const outputText = data.choices[0]['message']['content'].trim();
+              updateOutput('ChatGPT: ' + outputText);
+              messages.push({"role": "assistant", "content": outputText});
+              scrollToBottom();
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+      }
+    }
+
+    function updateOutput(text) {
+        message_text += (text + "\n\n");
+        const outputPane = document.getElementById('output-pane');
+        const converter = new showdown.Converter();
+        const html = converter.makeHtml(message_text);
+    
+        outputPane.innerHTML = html;
+    }
+
+    function scrollToBottom() {
+      const outputPane = document.getElementById('output-pane');
+      outputPane.scrollTop = outputPane.scrollHeight;
+    }
+  </script>
+</body>
+
+</html>
