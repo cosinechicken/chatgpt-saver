@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xml:lang="en">
 
 <head>
   <title>ChatGPT Wrapper</title>
   <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
-  <div id="input-pane">
-    <textarea id="input-text" placeholder="Enter text here..." onkeydown="handleKeyDown(event)"></textarea>
-  </div>
-  <div id="output-pane"></div>
-  <script src="bower_components/showdown/dist/showdown.min.js"></script>
-  <script src="script.js"></script>
+<body class="dark-mode">
+    <div id="output-pane"></div>
+    <div id="splitter"></div>
+    <div id="input-pane">
+        <textarea id="input-text" placeholder="Enter text here..." onkeydown="handleKeyDown(event)"></textarea>
+        <button id="toggle-btn">Toggle Mode</button> <!-- Add toggle button here -->
+    </div>
+  
+  
+    <script src="bower_components/showdown/dist/showdown.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

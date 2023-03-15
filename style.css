@@ -1,19 +1,48 @@
-#input-pane {
+:root {
+    --background-color: #ffffff; /* default light mode background color */
+    --text-color: #000000; /* default light mode text color */
+    --output-bg-color: #ffffff; /* default light mode output pane background color */
+    --output-text-color: #111111; /* default light mode output pane text color */
+  }
+
+  /* dark mode */
+  .dark-mode {
+    --background-color: #222222; /* change to a darker color for dark mode */
+    --text-color: #ffffff; /* change to white for dark mode */
+    --output-bg-color: #333333; /* change to a darker color for dark mode */
+    --output-text-color: #ffffff; /* change to white for dark mode */
+    --white-color: #ffffff; /* default light mode white color */
+    --dark-color: #444444; /* default dark mode color */
+
+    /* set the color of the remaining white spaces to dark mode color */
+    --background-color: var(--dark-color);
+    --text-color: #ffffff;
+    --output-bg-color: var(--dark-color);
+    --output-text-color: #ffffff;
+
+    /* change the color of white backgrounds to dark mode color */
+    --background-color-white: var(--dark-color);
+    --user-message-bg-color: var(--background-color-white);
+  }
+
+  /* standard CSS */
+  #input-pane {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 200px;
-    background-color: #fff;
-    border-top: 1px solid #ccc;
+    background-color: var(--background-color);
+    border-top: 0px solid #666;
     display: flex;
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
-    border-bottom: 5px solid #ccc;
+    border-bottom: 0px solid #666;
     overflow: auto;
+    color: var(--text-color);
   }
-  
+
   #input-text {
     flex-grow: 1;
     border: none;
@@ -21,22 +50,14 @@
     font-size: 14px;
     outline: none;
     resize: none;
+    background-color: var(--background-color);
+    color: var(--text-color);
   }
-  
+
   #input-text:focus {
     box-shadow: none;
   }
-  
-  #input-btn {
-    background-color: #111;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-left: 20px;
-  }
-  
+
   #output-pane {
     position: fixed;
     bottom: 208px;
@@ -46,32 +67,67 @@
     padding: 0px;
     box-sizing: border-box;
     overflow-y: auto;
-    background-color: #fff;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    background-color: var(--output-bg-color);
+    border-top: 0px solid #666;
+    border-bottom: 0px solid #666;
     margin: 0px;
+    color: var(--output-text-color);
   }
-  
+
   .output-message {
     margin-bottom: 20px;
   }
-  
+
   .user-message {
     color: #111;
-    background-color: #fff; /* white background for user messages */
+    /* change background color to new variable */
+    background-color: var(--user-message-bg-color);
     width: 100%;
     min-height: 72px; /* change as needed */
     padding: 24px 64px 24px 64px;
     box-sizing: border-box;
     margin: 0px;
   }
-  
+
   .assistant-message {
-    color: #111; /* darker blue font color */
-    background-color: #e1e4e8; /* darker gray background color */
+    color: #2c3e50;
+    background-color: #d1d8e0;
     width: 100%;
-    min-height: 72px; /* change as needed */
+    min-height: 72px;
     padding: 24px 64px 24px 64px;
     box-sizing: border-box;
     margin: 0px;
+  }
+
+  #splitter {
+    position: fixed;
+    bottom: 200px;
+    left: 0px;
+    width: 100%;
+    height: 8px;
+    background-color: #DDD;
+    border-width: 0px;
+  }
+
+  textarea::placeholder {
+    color: #777;
+  }
+
+  .dark-mode .user-message {
+    color: #fff;
+    /* change background color to new variable */
+    background-color: var(--background-color-white);
+  }
+
+  .dark-mode .assistant-message {
+    color: #fff;
+    background-color: #666;
+  }
+
+  .dark-mode #splitter {
+    background-color: #333;
+  }
+
+  .dark-mode textarea::placeholder {
+    color: #999;
   }

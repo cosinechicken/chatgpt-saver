@@ -60,3 +60,9 @@ function scrollToBottom() {
   const outputPane = document.getElementById('output-pane');
   outputPane.scrollTop = outputPane.scrollHeight;
 }
+const toggleBtn = document.getElementById('toggle-btn');
+const body = document.querySelector('body');
+
+toggleBtn.addEventListener('click', function() {
+  body.classList.toggle('dark-mode'); // Toggle "dark-mode" class on body element
+});
