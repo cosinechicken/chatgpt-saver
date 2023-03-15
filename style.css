@@ -101,6 +101,16 @@
     margin: 0px;
   }
 
+  .error-message {
+    color: #000000;
+    background-color: #FF8888;
+    width: 100%;
+    min-height: 72px;
+    padding: 24px 64px 24px 64px;
+    box-sizing: border-box;
+    margin: 0px;
+  }
+
   #splitter {
     position: fixed;
     bottom: 200px;
