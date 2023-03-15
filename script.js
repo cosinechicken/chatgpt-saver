@@ -1,3 +1,5 @@
+// import hljs from 'highlight.js';
+
 let messages = []
 let message_text = ""
 
@@ -20,7 +22,7 @@ function handleKeyDown(event) {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer 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',
+            'Authorization': 'Bearer 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',
           },
           body: JSON.stringify(data)
         })
@@ -52,6 +54,8 @@ function updateOutput(text) {
 
     messageElement.innerHTML = html;
     outputPane.appendChild(messageElement);
+
+    hljs.highlightAll();
 
     scrollToBottom();
 }
