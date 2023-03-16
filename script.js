@@ -29,6 +29,7 @@ function handleKeyDown(event) {
         .then(response => response.json())
         .then(data => {
           const outputText = data.choices[0]['message']['content'].trim();
+          updateOutput('ChatGPT: ' + outputText, "text");
           messages.push({"role": "assistant", "content": outputText});
           scrollToBottom();
         })
@@ -73,4 +74,9 @@ const body = document.querySelector('body');
 
 toggleBtn.addEventListener('click', function() {
   body.classList.toggle('dark-mode'); // Toggle "dark-mode" class on body element
+  if (body.classList.contains('dark-mode')) {
+    toggleBtn.innerText = "Toggle Light Mode";
+  } else {
+    toggleBtn.innerText = "Toggle Dark Mode";
+  }
 });
