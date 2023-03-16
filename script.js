@@ -136,7 +136,7 @@ function setCookie(cname, cvalue, exdays) {
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     let expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-    console.log("Cookie " + cname + " set to " + cvalue + " and will expire in " + exdays + ". ");
+    console.log("Cookie " + cname + " set. ");
   }
   
   function getCookie(cname) {
@@ -148,7 +148,7 @@ function setCookie(cname, cvalue, exdays) {
         c = c.substring(1);
       }
       if (c.indexOf(name) == 0) {
-        console.log("Cookie " + cname + ": " + c.substring(name.length, c.length));
+        console.log("Cookie " + cname + " retrieved. ");
         return c.substring(name.length, c.length);
       }
     }
