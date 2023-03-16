@@ -191,7 +191,8 @@
   /* Dropdown */
 .dropdown {
     position: relative;
-    display: inline-block;
+    display: inline;
+    bottom: 33.3%;
   }
   
   /* Dropdown button */
