@@ -7,15 +7,20 @@
 </head>
 
 <body class="dark-mode">
-    
+
     <div id="output-pane"></div>
     <div id="splitter"></div>
     <div id="input-pane">
         <textarea id="input-text" placeholder="Enter text here..." onkeydown="handleKeyDown(event)"></textarea>
-        <button id="toggle-btn">Toggle Mode</button> <!-- Add toggle button here -->
+        <div class="dropdown">
+            <button class="dropbtn">Options</button>
+            <div class="dropdown-content">
+                <button id="toggle-btn">Light Mode</button>
+            </div>
+        </div>
     </div>
-  
-  
+
+
     <script src="bower_components/showdown/dist/showdown.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="highlight/styles/base16/tomorrow-night.min.css">
