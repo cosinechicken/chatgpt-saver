@@ -31,11 +31,16 @@ function handleKeyDown(event) {
           const outputText = data.choices[0]['message']['content'].trim();
           updateOutput('ChatGPT: ' + outputText, "text");
           messages.push({"role": "assistant", "content": outputText});
+          if (data.choices[0]['finish_reason'] === 'length') {
+            updateOutput('ChatGPT did not finish outputting, due to the max_tokens parameter or token limit.', "error");
+          } else if (data.choices[0]['finish_reason'] === 'content_filter') {
+            updateOutput('ChatGPT omitted content due to a flag from its content filters.', "error");
+          }
           scrollToBottom();
         })
         .catch((error) => {
           console.error('Error:', error);
-          updateOutput('Error: ' + error, "error");
+          updateOutput('Error: There was an error generating the output. You may have to refresh the site or use a different API key.', "error");
         });
     }
   }
