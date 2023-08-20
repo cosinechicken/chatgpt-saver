@@ -14,7 +14,7 @@ function handleKeyDown(event) {
 
       // Call ChatGPT API with inputText
       const data = {
-        "model": "gpt-3.5-turbo",
+        "model": "gpt-4",
         "messages": messages
       };
       authorization = ""
@@ -28,6 +28,7 @@ function handleKeyDown(event) {
         })
         .then(response => response.json())
         .then(data => {
+          console.log(data);
           const outputText = data.choices[0]['message']['content'].trim();
           updateOutput('ChatGPT: ' + outputText, "text");
           messages.push({"role": "assistant", "content": outputText});
